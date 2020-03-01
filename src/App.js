@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
-import Amount from './components/Amount/Amount';
+import React from "react";
+import "./App.css";
+import Expenses from './container/Expenses/Expenses';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Expense Tracker</h1>
-      <Amount />
+    <div className="container">
+      <h1 className="App m-3 d-flex justify-content-center">Expense Tracker</h1>
+      <Expenses />
     </div>
   );
 }

@@ -1,0 +1,26 @@
+.Border td, .Border th{
+    border: 2px solid black;
+    padding: 8px;
+}
+
+.Border tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.Border tr:hover {
+    background-color: #ddd;
+}
+
+.Border th {
+    padding-top: 10px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: Grey;
+    color: white;
+  }
+
+  .Border {
+    font-family: "Trebuchet MS", Arial, Helvetica, Open sans-serif;
+    border-collapse: collapse;
+    width: 150%;
+  }
