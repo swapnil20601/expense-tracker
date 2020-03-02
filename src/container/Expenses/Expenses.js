@@ -15,6 +15,7 @@ class Expenses extends Component {
     paymentType: "",
     expenses: [],
     showModal: false,
+   // modalData:{},
     editExpenseIndex: 0
   };
 
@@ -30,7 +31,13 @@ class Expenses extends Component {
 
   showModalHandler = requiredExpenseIndex => {
     this.setState({ showModal: true, editExpenseIndex: requiredExpenseIndex });
+    //this.populateModalData();
   };
+
+  // populateModalData = () => {
+  //   let expenseToUpdate = this.state.editExpenseIndex;
+  //   this.setState({modalData: this.state.expenses[expenseToUpdate]});
+  // }
 
   hideModalHandler = () => {
     this.setState({ showModal: false });
@@ -69,9 +76,10 @@ class Expenses extends Component {
     });
   };
 
-  render() {
+  render() { 
     let expenseToUpdate = this.state.editExpenseIndex;
-    let modalData = this.state.expenses[expenseToUpdate];
+    let populateModalData = this.state.expenses[expenseToUpdate]
+    console.log('MODAL data ',populateModalData)
 
     return (
       <Aux>
@@ -79,7 +87,7 @@ class Expenses extends Component {
           showModal={this.state.showModal}
           hideModal={this.hideModalHandler}
           saveEditedExpense={this.saveUpdatedExpenseModal}
-          modalData={modalData}
+          populateModalData={populateModalData}
         />
         <FormField
           date={this.state.date}
