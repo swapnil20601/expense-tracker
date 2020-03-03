@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
-import Aux from "../../hoc/Auxiliary";
 import classes from "./ExpenseTable.module.css";
 
 const expenseTable = props => {
@@ -43,7 +42,7 @@ const expenseTable = props => {
                 <Td>
                   <EditIcon
                     className="d-md-table mx-auto"
-                    onClick={props.edit.bind(this, index)}
+                    onClick={props.edit.bind(this, expense, index)}
                   />
                 </Td>
                 <Td>

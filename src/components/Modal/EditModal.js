@@ -15,6 +15,14 @@ class EditModal extends Component {
     paymentType: ""
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      id: nextProps.populateModalData.id,
+      amount: nextProps.populateModalData.amount,
+      item: nextProps.populateModalData.item
+    });
+  }
+
   changeHandler = event => {
     this.setState({ [event.target.name]: event.target.value, id: uuid() });
   };

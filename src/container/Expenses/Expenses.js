@@ -15,8 +15,8 @@ class Expenses extends Component {
     paymentType: "",
     expenses: [],
     showModal: false,
-   // modalData:{},
-    editExpenseIndex: 0
+    editExpenseIndex: 0,
+    editExpenseItem: {}
   };
 
   changeHandler = event => {
@@ -29,15 +29,13 @@ class Expenses extends Component {
     this.setState({ expenses: updatedExpenses });
   };
 
-  showModalHandler = requiredExpenseIndex => {
-    this.setState({ showModal: true, editExpenseIndex: requiredExpenseIndex });
-    //this.populateModalData();
+  showModalHandler = (requiredExpenseItem, requiredExpenseIndex) => {
+    this.setState({
+      showModal: true,
+      editExpenseItem: requiredExpenseItem,
+      editExpenseIndex: requiredExpenseIndex
+    });
   };
-
-  // populateModalData = () => {
-  //   let expenseToUpdate = this.state.editExpenseIndex;
-  //   this.setState({modalData: this.state.expenses[expenseToUpdate]});
-  // }
 
   hideModalHandler = () => {
     this.setState({ showModal: false });
@@ -76,18 +74,14 @@ class Expenses extends Component {
     });
   };
 
-  render() { 
-    let expenseToUpdate = this.state.editExpenseIndex;
-    let populateModalData = this.state.expenses[expenseToUpdate]
-    console.log('MODAL data ',populateModalData)
-
+  render() {
     return (
       <Aux>
         <EditModal
           showModal={this.state.showModal}
           hideModal={this.hideModalHandler}
           saveEditedExpense={this.saveUpdatedExpenseModal}
-          populateModalData={populateModalData}
+          populateModalData={this.state.editExpenseItem}
         />
         <FormField
           date={this.state.date}
