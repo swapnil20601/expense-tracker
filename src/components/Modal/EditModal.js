@@ -45,11 +45,9 @@ class EditModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Container>
+          <Container className={classes.BodyFont}>
             <p>
-              <span className="form-group col-md-4">
-                <strong>Amount:</strong>
-              </span>
+              <span className="form-group col-md-4">Amount:</span>
               <input
                 className={classes.InputType}
                 name="amount"
@@ -59,9 +57,7 @@ class EditModal extends Component {
               />
             </p>
             <p>
-              <span className="form-group col-md-4">
-                <strong>Date:</strong>
-              </span>
+              <span className="form-group col-md-4">Date:</span>
               <input
                 className={classes.InputType}
                 name="date"
@@ -71,9 +67,7 @@ class EditModal extends Component {
               />
             </p>
             <p>
-              <span className="form-group col-md-4 ">
-                <strong>Item:</strong>
-              </span>
+              <span className="form-group col-md-4 ">Item:</span>
               <input
                 className={classes.InputType}
                 type="text"
@@ -83,9 +77,7 @@ class EditModal extends Component {
               />
             </p>
             <p>
-              <span className="form-group col-md-4 ">
-                <strong>Location:</strong>
-              </span>
+              <span className="form-group col-md-4 ">Location:</span>
               <input
                 className={classes.InputType}
                 type="text"
@@ -95,9 +87,7 @@ class EditModal extends Component {
               />
             </p>
             <p>
-              <span className="form-group col-md-4">
-                <strong>Payment Type:</strong>
-              </span>
+              <span className="form-group col-md-4">Payment Type:</span>
               <select
                 className={classes.InputType}
                 name="paymentType"

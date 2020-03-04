@@ -49,7 +49,7 @@ const expenseTable = props => {
                   <DeleteIcon
                     color="secondary"
                     className="d-md-table mx-auto"
-                    onClick={props.deleteExpense.bind(this, index)}
+                    onClick={props.confirmation.bind(this, index)}
                   />
                 </Td>
               </Tr>

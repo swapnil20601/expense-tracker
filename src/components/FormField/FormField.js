@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
+import React, { useEffect, useRef } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import classes from "./Form.module.css";
-import PropTypes from "prop-types";
 
 const FormField = props => {
   const inputRef = useRef(null);
@@ -32,6 +32,7 @@ const FormField = props => {
             onChange={props.changed}
             ref={inputRef}
           />
+          <div style={{ color: "red", fontSize: 13 }}>{props.errors.amountError}</div>
         </Form.Group>
 
         <Form.Group as={Col} md="3">
@@ -61,6 +62,9 @@ const FormField = props => {
             onChange={props.changed}
             value={props.item}
           />
+          <div style={{ color: "red", fontSize: 13 }}>
+            {props.errors.itemError}
+          </div>
         </Form.Group>
       </Form.Row>
 
@@ -78,6 +82,9 @@ const FormField = props => {
             value={props.location}
             onChange={props.changed}
           />
+          <div style={{ color: "red", fontSize: 13 }}>
+            {props.errors.locationError}
+          </div>
         </Form.Group>
 
         <Form.Group as={Col} md="3">
