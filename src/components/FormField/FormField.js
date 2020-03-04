@@ -32,14 +32,14 @@ const FormField = props => {
             onChange={props.changed}
             ref={inputRef}
           />
-          <div style={{ color: "red", fontSize: 13 }}>{props.errors.amountError}</div>
+          <div style={{ color: "red" }}>{props.errors.amountError}</div>
         </Form.Group>
-
         <Form.Group as={Col} md="3">
           <Form.Label>
             <strong>Date:</strong>
           </Form.Label>
           <Form.Control
+            formNoValidate
             className={classes.InputType}
             type="date"
             name="date"
@@ -47,6 +47,7 @@ const FormField = props => {
             value={props.date}
             onChange={props.changed}
           />
+          <div style={{ color: "red" }}>{props.errors.dateError}</div>
         </Form.Group>
 
         <Form.Group as={Col} md="4">
@@ -62,9 +63,7 @@ const FormField = props => {
             onChange={props.changed}
             value={props.item}
           />
-          <div style={{ color: "red", fontSize: 13 }}>
-            {props.errors.itemError}
-          </div>
+          <div style={{ color: "red" }}>{props.errors.itemError}</div>
         </Form.Group>
       </Form.Row>
 
@@ -82,9 +81,7 @@ const FormField = props => {
             value={props.location}
             onChange={props.changed}
           />
-          <div style={{ color: "red", fontSize: 13 }}>
-            {props.errors.locationError}
-          </div>
+          <div style={{ color: "red" }}>{props.errors.locationError}</div>
         </Form.Group>
 
         <Form.Group as={Col} md="3">
@@ -107,6 +104,7 @@ const FormField = props => {
             <option value="Credit Card">Credit Card</option>
             <option value="Other">Other</option>
           </Form.Control>
+          <div style={{ color: "red" }}>{props.errors.paymentTypeError}</div>
         </Form.Group>
       </Form.Row>
 

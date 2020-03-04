@@ -7,6 +7,12 @@ import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import classes from "./ExpenseTable.module.css";
 
 const expenseTable = props => {
+  //Function to convert date format from yyyy-mm-dd to mm/dd/yyyy
+  const dateConverter = date => {
+    const dateObj = new Date(date + "T00:00:00");
+    return new Intl.DateTimeFormat("en-US").format(dateObj);
+  };
+
   let showHeader = null;
   if (props.body.length > 0) {
     showHeader = (
@@ -34,7 +40,7 @@ const expenseTable = props => {
             return (
               <Tr key={expense.id}>
                 <Td>{index + 1})</Td>
-                <Td>{expense.date}</Td>
+                <Td>{dateConverter(expense.date)}</Td>
                 <Td>{expense.item}</Td>
                 <Td>{expense.amount}$</Td>
                 <Td>{expense.paymentType}</Td>

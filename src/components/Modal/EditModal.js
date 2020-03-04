@@ -19,7 +19,10 @@ class EditModal extends Component {
     this.setState({
       id: nextProps.populateModalData.id,
       amount: nextProps.populateModalData.amount,
-      item: nextProps.populateModalData.item
+      item: nextProps.populateModalData.item,
+      location: nextProps.populateModalData.location,
+      paymentType: nextProps.populateModalData.paymentType,
+      date: nextProps.populateModalData.date
     });
   }
 

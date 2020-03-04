@@ -23,14 +23,17 @@ class Expenses extends Component {
     errorMessages: {
       itemError: "",
       amountError: "",
-      locationError: ""
+      locationError: "",
+      paymentTypeError: "",
+      dateError:""
     }
   };
 
   validate = () => {
-    let itemError, locationError, amountError = "";
-    let regex = /^(0|[1-9]\d*)(\.\d+)?$/;
-
+    let itemError, locationError, amountError, dateError, paymentTypeError = "";
+    let amountRegex = /^(0|[1-9]\d*)(\.\d+)?$/;
+    let dateRegex = /^\d{4}-\d{1,2}-\d{1,2}$/;
+    
     if (this.state.item.trim() === "") {
       itemError = "Item is required";
     } else if (this.state.item.length > 10) {
@@ -43,14 +46,24 @@ class Expenses extends Component {
 
     if (this.state.amount.trim() === "") {
       amountError = "Amount is required";
-    } else if(!regex.test(this.state.amount)) {
+    } else if(!amountRegex.test(this.state.amount)) {
       amountError = "Please enter valid numeric or decimal value";
     }
 
-    if (itemError || locationError || amountError) {
+    if (this.state.date.trim() === "") {
+      dateError = "Date is required";
+    } else if(!dateRegex.test(this.state.date)) {
+      dateError = "Please enter valid date in MM/DD/YYYY format";
+    }
+
+    if (this.state.paymentType.trim() === "") {
+      paymentTypeError = "Payment Mode is required";
+    }
+
+    if (itemError || locationError || amountError || dateError || paymentTypeError) {
       const updatedErrorMessages = {
         ...this.state.errorMessages,
-        itemError, locationError, amountError
+        itemError, locationError, amountError, dateError, paymentTypeError
       };
       this.setState({ errorMessages: updatedErrorMessages });
       return false;
@@ -130,7 +143,9 @@ class Expenses extends Component {
         errorMessages: {
           itemError: "",
           amountError: "",
-          locationError: ""
+          locationError: "",
+          dateError: "",
+          paymentTypeError: ""
         }
       });
     }
