@@ -16,14 +16,16 @@ const FormField = props => {
   }
 
   return (
-    <Form onSubmit={props.submit}>
+    <Form noValidate onSubmit={props.submit}>
       <Form.Row>
         <Form.Group as={Col} md="3">
-          <Form.Label>
-            <strong>Amount:</strong>
-          </Form.Label>
+          <Form.Label><strong>Amount:</strong></Form.Label>
           <Form.Control
-            className={classes.InputType}
+            className={
+              props.errors.amountError === ""
+                ? classes.InputType
+                : classes.ErrorInput
+            }
             type="text"
             placeholder="How much $ did you spend?"
             name="amount"
@@ -34,13 +36,16 @@ const FormField = props => {
           />
           <div style={{ color: "red" }}>{props.errors.amountError}</div>
         </Form.Group>
+
         <Form.Group as={Col} md="3">
-          <Form.Label>
-            <strong>Date:</strong>
-          </Form.Label>
+          <Form.Label><strong>Date:</strong></Form.Label>
           <Form.Control
             formNoValidate
-            className={classes.InputType}
+            className={
+              props.errors.dateError === ""
+                ? classes.InputType
+                : classes.ErrorInput
+            }
             type="date"
             name="date"
             size="sm"
@@ -51,11 +56,13 @@ const FormField = props => {
         </Form.Group>
 
         <Form.Group as={Col} md="4">
-          <Form.Label>
-            <strong>Item:</strong>
-          </Form.Label>
+          <Form.Label><strong>Item:</strong></Form.Label>
           <Form.Control
-            className={classes.InputType}
+            className={
+              props.errors.itemError === ""
+                ? classes.InputType
+                : classes.ErrorInput
+            }
             type="text"
             name="item"
             placeholder="What did you spend on?"
@@ -69,11 +76,13 @@ const FormField = props => {
 
       <Form.Row>
         <Form.Group as={Col} md="6">
-          <Form.Label>
-            <strong>Location:</strong>
-          </Form.Label>
+          <Form.Label><strong>Location:</strong></Form.Label>
           <Form.Control
-            className={classes.InputType}
+            className={
+              props.errors.locationError === ""
+                ? classes.InputType
+                : classes.ErrorInput
+            }
             type="text"
             name="location"
             placeholder="Where did you purchase?"
@@ -85,11 +94,13 @@ const FormField = props => {
         </Form.Group>
 
         <Form.Group as={Col} md="3">
-          <Form.Label>
-            <strong>Payment Type:</strong>
-          </Form.Label>
+          <Form.Label><strong>Payment Type:</strong></Form.Label>
           <Form.Control
-            className={classes.InputType}
+            className={
+              props.errors.paymentTypeError === ""
+                ? classes.InputType
+                : classes.ErrorInput
+            }
             as="select"
             value={defVal}
             size="sm"
@@ -127,7 +138,9 @@ FormField.propTypes = {
   amount: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
-  paymentType: PropTypes.string.isRequired
+  paymentType: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  errors: PropTypes.object
 };
 
 export default FormField;

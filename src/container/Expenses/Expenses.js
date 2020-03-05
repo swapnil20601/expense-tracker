@@ -25,15 +25,19 @@ class Expenses extends Component {
       amountError: "",
       locationError: "",
       paymentTypeError: "",
-      dateError:""
+      dateError: ""
     }
   };
 
   validate = () => {
-    let itemError, locationError, amountError, dateError, paymentTypeError = "";
+    let itemError = "";
+    let locationError = "";
+    let amountError = "";
+    let dateError = "";
+    let paymentTypeError = "";
     let amountRegex = /^(0|[1-9]\d*)(\.\d+)?$/;
     let dateRegex = /^\d{4}-\d{1,2}-\d{1,2}$/;
-    
+
     if (this.state.item.trim() === "") {
       itemError = "Item is required";
     } else if (this.state.item.length > 10) {
@@ -42,17 +46,17 @@ class Expenses extends Component {
 
     if (this.state.location.trim() === "") {
       locationError = "Location is required";
-    } 
+    }
 
     if (this.state.amount.trim() === "") {
       amountError = "Amount is required";
-    } else if(!amountRegex.test(this.state.amount)) {
+    } else if (!amountRegex.test(this.state.amount)) {
       amountError = "Please enter valid numeric or decimal value";
     }
 
     if (this.state.date.trim() === "") {
-      dateError = "Date is required";
-    } else if(!dateRegex.test(this.state.date)) {
+      dateError = "Valid date is required";
+    } else if (!dateRegex.test(this.state.date)) {
       dateError = "Please enter valid date in MM/DD/YYYY format";
     }
 
@@ -60,10 +64,20 @@ class Expenses extends Component {
       paymentTypeError = "Payment Mode is required";
     }
 
-    if (itemError || locationError || amountError || dateError || paymentTypeError) {
+    if (
+      itemError ||
+      locationError ||
+      amountError ||
+      dateError ||
+      paymentTypeError
+    ) {
       const updatedErrorMessages = {
         ...this.state.errorMessages,
-        itemError, locationError, amountError, dateError, paymentTypeError
+        itemError,
+        locationError,
+        amountError,
+        dateError,
+        paymentTypeError
       };
       this.setState({ errorMessages: updatedErrorMessages });
       return false;
@@ -129,7 +143,7 @@ class Expenses extends Component {
         item: this.state.item,
         amount: this.state.amount,
         location: this.state.location,
-        paymentType: this.state.paymentType,
+        paymentType: this.state.paymentType
       });
 
       this.setState({

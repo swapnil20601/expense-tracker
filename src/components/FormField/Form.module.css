@@ -1,13 +1,12 @@
 .InputType {
   border-radius: 0.2rem;
   padding-left: 5px;
-  border: 0.5px solid black;
+  border: 1px solid black;
   font: 1em sans-serif;
 }
 
-.Error{
-  font-size: 13px;
-    color: red;
+.ErrorInput{
     padding-left: 5px;
-    border: 1.5px solid red;
+    font: 1em sans-serif; 
+    border: 1.2px solid red;
 }
