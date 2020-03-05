@@ -22,15 +22,26 @@ class EditModal extends Component {
     }
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     id: nextProps.populateModalData.id,
+  //     amount: nextProps.populateModalData.amount,
+  //     item: nextProps.populateModalData.item,
+  //     location: nextProps.populateModalData.location,
+  //     paymentType: nextProps.populateModalData.paymentType,
+  //     date: nextProps.populateModalData.date
+  //   });
+  // }
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    return({
       id: nextProps.populateModalData.id,
       amount: nextProps.populateModalData.amount,
       item: nextProps.populateModalData.item,
       location: nextProps.populateModalData.location,
       paymentType: nextProps.populateModalData.paymentType,
       date: nextProps.populateModalData.date
-    });
+    })
   }
 
   validate = () => {
@@ -143,7 +154,7 @@ class EditModal extends Component {
               }
               name="amount"
               type="text"
-              value={this.state.amount}
+              defaultValue={this.state.amount}
               onChange={this.changeHandler}
             />
             <div className={classes.ErrorMessage}>
@@ -163,7 +174,7 @@ class EditModal extends Component {
               }
               name="date"
               type="date"
-              value={this.state.date}
+              defaultValue={this.state.date}
               onChange={this.changeHandler}
             />
             <div className={classes.ErrorMessage}>
@@ -183,7 +194,7 @@ class EditModal extends Component {
               }
               name="item"
               type="text"
-              value={this.state.item}
+              defaultValue={this.state.item}
               onChange={this.changeHandler}
             />
             <div className={classes.ErrorMessage}>
@@ -203,7 +214,7 @@ class EditModal extends Component {
               }
               name="location"
               type="text"
-              value={this.state.location}
+              defaultValue={this.state.location}
               onChange={this.changeHandler}
             />
             <div className={classes.ErrorMessage}>
@@ -218,7 +229,7 @@ class EditModal extends Component {
             <select
               className={classes.InputType}
               name="paymentType"
-              value={this.state.paymentType}
+              defaultValue={this.state.paymentType}
               onChange={this.changeHandler}
             >
               <option value="Cash">Cash</option>
