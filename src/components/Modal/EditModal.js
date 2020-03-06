@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import uuid from "react-uuid";
@@ -22,28 +21,17 @@ class EditModal extends Component {
     }
   };
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     id: nextProps.populateModalData.id,
-  //     amount: nextProps.populateModalData.amount,
-  //     item: nextProps.populateModalData.item,
-  //     location: nextProps.populateModalData.location,
-  //     paymentType: nextProps.populateModalData.paymentType,
-  //     date: nextProps.populateModalData.date
-  //   });
-  // }
-
-  static getDerivedStateFromProps(nextProps, prevState){
-    return({
+  componentWillReceiveProps(nextProps) {
+    this.setState({
       id: nextProps.populateModalData.id,
       amount: nextProps.populateModalData.amount,
       item: nextProps.populateModalData.item,
       location: nextProps.populateModalData.location,
       paymentType: nextProps.populateModalData.paymentType,
       date: nextProps.populateModalData.date
-    })
+    });
   }
-
+ 
   validate = () => {
     let itemError = "";
     let locationError = "";

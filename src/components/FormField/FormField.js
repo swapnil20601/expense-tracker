@@ -30,7 +30,7 @@ const FormField = props => {
             placeholder="How much $ did you spend?"
             name="amount"
             size="sm"
-            defaultValue={props.amount}
+            value={props.amount}
             onChange={props.changed}
             ref={inputRef}
           />
@@ -49,7 +49,7 @@ const FormField = props => {
             type="date"
             name="date"
             size="sm"
-            defaultValue={props.date}
+            value={props.date}
             onChange={props.changed}
           />
           <div style={{ color: "red" }}>{props.errors.dateError}</div>
@@ -68,7 +68,7 @@ const FormField = props => {
             placeholder="What did you spend on?"
             size="sm"
             onChange={props.changed}
-            defaultValue={props.item}
+            value={props.item}
           />
           <div style={{ color: "red" }}>{props.errors.itemError}</div>
         </Form.Group>
@@ -87,7 +87,7 @@ const FormField = props => {
             name="location"
             placeholder="Where did you purchase?"
             size="sm"
-            defaultValue={props.location}
+            value={props.location}
             onChange={props.changed}
           />
           <div style={{ color: "red" }}>{props.errors.locationError}</div>
@@ -102,7 +102,7 @@ const FormField = props => {
                 : classes.ErrorInput
             }
             as="select"
-            defaultValue={defVal}
+            value={defVal}
             size="sm"
             onChange={props.changed}
             name="paymentType"

@@ -94,6 +94,7 @@ class Expenses extends Component {
     const expenseIndex = this.state.deleteExpenseIndex;
     const updatedExpenses = [...this.state.expenses];
     updatedExpenses.splice(expenseIndex, 1);
+    localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
     this.setState({ expenses: updatedExpenses });
     this.hideConfirmationModalHandler();
   };
@@ -122,10 +123,12 @@ class Expenses extends Component {
   };
 
   saveUpdatedExpenseModal = updatedExpense => {
+    delete updatedExpense.errorMessages;
     const expenseIndex = this.state.editExpenseIndex;
     const editedExpense = [...this.state.expenses];
     editedExpense[expenseIndex] = updatedExpense;
     this.setState({ expenses: editedExpense });
+    localStorage.setItem("expenses", JSON.stringify(editedExpense));
     this.hideModalHandler();
   };
 
@@ -146,6 +149,8 @@ class Expenses extends Component {
         paymentType: this.state.paymentType
       });
 
+      localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
+
       this.setState({
         expenses: updatedExpenses,
         id: "",
@@ -164,6 +169,16 @@ class Expenses extends Component {
       });
     }
   };
+
+  componentDidMount() {
+    const localStorageExpenses = JSON.parse(localStorage.getItem("expenses"));
+
+    if (localStorage.getItem("expenses")) {
+      this.setState({ expenses: localStorageExpenses });
+    } else {
+      this.setState({ expenses: [] });
+    }
+  }
 
   render() {
     return (

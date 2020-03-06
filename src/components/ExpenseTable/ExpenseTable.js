@@ -12,7 +12,7 @@ const expenseTable = props => {
     const dateObj = new Date(date + "T00:00:00");
     return new Intl.DateTimeFormat("en-US").format(dateObj);
   };
-
+  
   let showHeader = null;
   if (props.body.length > 0) {
     showHeader = (
