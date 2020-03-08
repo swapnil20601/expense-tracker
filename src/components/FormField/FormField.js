@@ -3,9 +3,11 @@ import React, { useEffect, useRef } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import classes from "./Form.module.css";
 
+//Functional Component to return form with input fields
 const FormField = props => {
   const inputRef = useRef(null);
 
+  //hook to focus on Amount input field
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -19,7 +21,9 @@ const FormField = props => {
     <Form noValidate onSubmit={props.submit}>
       <Form.Row>
         <Form.Group as={Col} md="3">
-          <Form.Label><strong>Amount:</strong></Form.Label>
+          <Form.Label>
+            <strong>Amount:</strong>
+          </Form.Label>
           <Form.Control
             className={
               props.errors.amountError === ""
@@ -38,7 +42,9 @@ const FormField = props => {
         </Form.Group>
 
         <Form.Group as={Col} md="3">
-          <Form.Label><strong>Date:</strong></Form.Label>
+          <Form.Label>
+            <strong>Date:</strong>
+          </Form.Label>
           <Form.Control
             formNoValidate
             className={
@@ -56,7 +62,9 @@ const FormField = props => {
         </Form.Group>
 
         <Form.Group as={Col} md="4">
-          <Form.Label><strong>Item:</strong></Form.Label>
+          <Form.Label>
+            <strong>Item:</strong>
+          </Form.Label>
           <Form.Control
             className={
               props.errors.itemError === ""
@@ -76,7 +84,9 @@ const FormField = props => {
 
       <Form.Row>
         <Form.Group as={Col} md="6">
-          <Form.Label><strong>Location:</strong></Form.Label>
+          <Form.Label>
+            <strong>Location:</strong>
+          </Form.Label>
           <Form.Control
             className={
               props.errors.locationError === ""
@@ -94,7 +104,9 @@ const FormField = props => {
         </Form.Group>
 
         <Form.Group as={Col} md="3">
-          <Form.Label><strong>Payment Type:</strong></Form.Label>
+          <Form.Label>
+            <strong>Payment Type:</strong>
+          </Form.Label>
           <Form.Control
             className={
               props.errors.paymentTypeError === ""

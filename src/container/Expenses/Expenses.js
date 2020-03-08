@@ -6,6 +6,7 @@ import ConfirmationModal from "../../components/Modal/ConfirmationModel";
 import EditModal from "../../components/Modal/EditModal";
 import Aux from "../../hoc/Auxiliary";
 
+//Parent Component that manages state of the application and operations performed on it
 class Expenses extends Component {
   state = {
     id: "",
@@ -29,6 +30,7 @@ class Expenses extends Component {
     }
   };
 
+  //function to validate Form data before submitting the form
   validate = () => {
     let itemError = "";
     let locationError = "";
@@ -86,19 +88,23 @@ class Expenses extends Component {
     return true;
   };
 
+  //function to handle two-way binding when input vaue is changed
   changeHandler = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  //function to delete specific expense from Expense table and in Local Storage
   deleteExpenseHandler = () => {
     const expenseIndex = this.state.deleteExpenseIndex;
     const updatedExpenses = [...this.state.expenses];
     updatedExpenses.splice(expenseIndex, 1);
+    //deletes the expense from local storage
     localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
     this.setState({ expenses: updatedExpenses });
     this.hideConfirmationModalHandler();
   };
 
+  //function to show modal populated with required expense data when edit button in Expense Table is clicked
   showModalHandler = (requiredExpenseItem, requiredExpenseIndex) => {
     this.setState({
       showModal: true,
@@ -107,6 +113,7 @@ class Expenses extends Component {
     });
   };
 
+  //function to show confirmation modal before deleting the expense
   showConfirmationHandler = expenseIndex => {
     this.setState({
       showConfirmationModal: true,
@@ -114,29 +121,35 @@ class Expenses extends Component {
     });
   };
 
+  //function to hide confirmation modal if you don't wish to Edit any expense in Expense Table
   hideModalHandler = () => {
     this.setState({ showModal: false });
   };
 
+  //function to hide confirmation modal if you don't wish to Delete an expense
   hideConfirmationModalHandler = () => {
     this.setState({ showConfirmationModal: false });
   };
 
+  //function to save the updated expense in Expense Table and also in Local Storage
   saveUpdatedExpenseModal = updatedExpense => {
     delete updatedExpense.errorMessages;
     const expenseIndex = this.state.editExpenseIndex;
     const editedExpense = [...this.state.expenses];
     editedExpense[expenseIndex] = updatedExpense;
     this.setState({ expenses: editedExpense });
+    //updates the edited expense in local storage
     localStorage.setItem("expenses", JSON.stringify(editedExpense));
     this.hideModalHandler();
   };
 
+  //function to submit form with valid expense data and also adding expense to Local Storage
   submitFormHandler = event => {
     event.preventDefault();
 
     const isValid = this.validate();
 
+    //submits form only if all validations are passed
     if (isValid) {
       const updatedExpenses = [...this.state.expenses];
 
@@ -149,8 +162,10 @@ class Expenses extends Component {
         paymentType: this.state.paymentType
       });
 
+      //adds the valid expense to local storage
       localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
 
+      //clears the form
       this.setState({
         expenses: updatedExpenses,
         id: "",
@@ -170,6 +185,8 @@ class Expenses extends Component {
     }
   };
 
+  //React lifecycle method to show the Expenses stored in local storage, if any,
+  //once page is reloaded or revisited
   componentDidMount() {
     const localStorageExpenses = JSON.parse(localStorage.getItem("expenses"));
 

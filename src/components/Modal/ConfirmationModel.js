@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import classes from "./EditModal.module.css";
 
+//Functional Component to show Modal when clicked on Edit button and lets you update expense
 const confirmationModel = props => {
   return (
     <Modal
@@ -19,8 +20,12 @@ const confirmationModel = props => {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.hideConfirmationModal}>Cancel</Button>
-        <Button variant="danger" onClick={props.deleteExpense}>Delete</Button>
+        <Button variant="secondary" onClick={props.hideConfirmationModal}>
+          Cancel
+        </Button>
+        <Button variant="danger" onClick={props.deleteExpense}>
+          Delete
+        </Button>
       </Modal.Footer>
     </Modal>
   );

@@ -6,13 +6,14 @@ import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import classes from "./ExpenseTable.module.css";
 
+//Functional Component to return dynamic Expense table
 const expenseTable = props => {
   //Function to convert date format from yyyy-mm-dd to mm/dd/yyyy
   const dateConverter = date => {
     const dateObj = new Date(date + "T00:00:00");
     return new Intl.DateTimeFormat("en-US").format(dateObj);
   };
-  
+
   let showHeader = null;
   if (props.body.length > 0) {
     showHeader = (
@@ -32,7 +33,7 @@ const expenseTable = props => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Table className={classes.Border}>
         {showHeader}
         <Tbody>
@@ -63,7 +64,7 @@ const expenseTable = props => {
           })}
         </Tbody>
       </Table>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

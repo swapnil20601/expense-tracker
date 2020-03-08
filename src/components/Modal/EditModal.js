@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import uuid from "react-uuid";
 import classes from "./EditModal.module.css";
 
+//Class Component for Modal to manage the state and perform operations on it
 class EditModal extends Component {
   state = {
     id: "",
@@ -21,6 +22,7 @@ class EditModal extends Component {
     }
   };
 
+  //React lifecycle method to receive props from Parent Component to populate the Modal
   componentWillReceiveProps(nextProps) {
     this.setState({
       id: nextProps.populateModalData.id,
@@ -31,7 +33,8 @@ class EditModal extends Component {
       date: nextProps.populateModalData.date
     });
   }
- 
+
+  //function to validate Modal data before updating specific expense
   validate = () => {
     let itemError = "";
     let locationError = "";
@@ -89,13 +92,16 @@ class EditModal extends Component {
     return true;
   };
 
+  //function to handle two-way binding when input vaue is changed
   changeHandler = event => {
     this.setState({ [event.target.name]: event.target.value, id: uuid() });
   };
 
+  //function to update specific expense after validating it
   saveNewExpenseHandler = () => {
     const isValid = this.validate();
 
+    //saves the expense only if all the validations are passed
     if (isValid) {
       this.props.saveEditedExpense(this.state);
       this.setState({
