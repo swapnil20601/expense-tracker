@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import uuid from "react-uuid";
 import ExpenseTable from "../../components/ExpenseTable/ExpenseTable";
 import FormField from "../../components/FormField/FormField";
-import ConfirmationModal from "../../components/Modal/ConfirmationModel";
 import EditModal from "../../components/Modal/EditModal";
 import Aux from "../../hoc/Auxiliary";
 
@@ -17,7 +16,6 @@ class Expenses extends Component {
     paymentType: "",
     expenses: [],
     showModal: false,
-    showConfirmationModal: false,
     editExpenseIndex: 0,
     deleteExpenseIndex: 0,
     editExpenseItem: {},
@@ -113,22 +111,9 @@ class Expenses extends Component {
     });
   };
 
-  //function to show confirmation modal before deleting the expense
-  showConfirmationHandler = expenseIndex => {
-    this.setState({
-      showConfirmationModal: true,
-      deleteExpenseIndex: expenseIndex
-    });
-  };
-
   //function to hide confirmation modal if you don't wish to Edit any expense in Expense Table
   hideModalHandler = () => {
     this.setState({ showModal: false });
-  };
-
-  //function to hide confirmation modal if you don't wish to Delete an expense
-  hideConfirmationModalHandler = () => {
-    this.setState({ showConfirmationModal: false });
   };
 
   //function to save the updated expense in Expense Table and also in Local Storage
@@ -206,12 +191,7 @@ class Expenses extends Component {
           saveEditedExpense={this.saveUpdatedExpenseModal}
           populateModalData={this.state.editExpenseItem}
         />
-        <ConfirmationModal
-          showConfirmationModal={this.state.showConfirmationModal}
-          hideConfirmationModal={this.hideConfirmationModalHandler}
-          deleteExpense={this.deleteExpenseHandler}
-        />
-        <FormField
+         <FormField
           date={this.state.date}
           item={this.state.item}
           amount={this.state.amount}
@@ -226,6 +206,7 @@ class Expenses extends Component {
             body={this.state.expenses}
             edit={this.showModalHandler}
             confirmation={this.showConfirmationHandler}
+            deleteExpenseHandler={this.deleteExpenseHandler}
           />
         </main>
       </Aux>

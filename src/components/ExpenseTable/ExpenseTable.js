@@ -1,10 +1,10 @@
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import PropTypes from "prop-types";
 import React from "react";
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import classes from "./ExpenseTable.module.css";
+import DeleteExpenseIcon from "./DeleteExpenseIcon";
+import EditExpenseIcon from "./EditExpenseIcon";
 
 //Functional Component to return dynamic Expense table
 const expenseTable = props => {
@@ -33,7 +33,7 @@ const expenseTable = props => {
   }
 
   return (
-    <Fragment>
+    <>
       <Table className={classes.Border}>
         {showHeader}
         <Tbody>
@@ -47,16 +47,12 @@ const expenseTable = props => {
                 <Td>{expense.paymentType}</Td>
                 <Td>{expense.location}</Td>
                 <Td>
-                  <EditIcon
-                    className="d-md-table mx-auto"
-                    onClick={props.edit.bind(this, expense, index)}
-                  />
+                  <EditExpenseIcon expense={expense}/>
                 </Td>
                 <Td>
-                  <DeleteIcon
-                    color="secondary"
-                    className="d-md-table mx-auto"
-                    onClick={props.confirmation.bind(this, index)}
+                  <DeleteExpenseIcon
+                    expense={expense}
+                    deleteExpenseHandler={props.deleteExpenseHandler}
                   />
                 </Td>
               </Tr>
@@ -64,7 +60,7 @@ const expenseTable = props => {
           })}
         </Tbody>
       </Table>
-    </Fragment>
+    </>
   );
 };
 
