@@ -1,4 +1,4 @@
-# STAR WARS API APP
+# EXPENSE TRACKER APP
 
 <br>
 
@@ -31,7 +31,7 @@ Download [GitBash](https://git-scm.com/downloads) to run git commands.
 - **JavaScript** - A front-end scripting language.
 - **React.js** - The JavaScript framework used.
 - **CSS & Bootstrap 4** - CSS and a CSS framework used for styling.
-- **Material-UI** - React UI framework for creating delete and edit icons.
+- **Material-UI** - React UI framework for creating Delete and Edit icons.
 
 ### Screenshot of App
 
@@ -40,7 +40,7 @@ Download [GitBash](https://git-scm.com/downloads) to run git commands.
 ### Deployment
 
 This application has been deployed to a container-based cloud platform **Heroku**.<br />
-[Click here](https://swapnil-star-war-api-app.herokuapp.com/) to checkout the app live.
+[Click here](https://expense-tracker-swapnil.herokuapp.com/) to checkout the app live and play around with it.
 
 ### Author
 
