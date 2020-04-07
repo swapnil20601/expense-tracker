@@ -1,6 +1,7 @@
+import EditIcon from "@material-ui/icons/Edit";
 import React, { Component } from "react";
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import classes from "./Modal.module.css";
 
 class EditExpenseIcon extends Component {
@@ -12,12 +13,11 @@ class EditExpenseIcon extends Component {
       amountError: "",
       locationError: "",
       paymentTypeError: "",
-      dateError: ""
+      dateError: "",
     }
   };
 
   showModal = () => {
-      console.log('show')
     this.setState({ showModal: true });
   };
 
@@ -25,10 +25,24 @@ class EditExpenseIcon extends Component {
     this.setState({ showModal: false });
   };
 
+  saveExpense = () => {
+    this.props.saveExpenseHandler(this.state.expense);
+    this.hideModal();
+  };
+
+  changeHandler = (event) => {
+    //const newExpenseModalData = { ...this.state.expense };
+    const newExpenseModalData = Object.assign({}, this.state.expense);
+    newExpenseModalData[event.target.name] = event.target.value;
+    this.setState({ expense: newExpenseModalData });
+  };
+
   render() {
+    const { expense } = this.state;
+
     return (
       <>
-        <EditExpenseIcon className="d-md-table mx-auto" onClick={this.showModal} />
+        <EditIcon className="d-md-table mx-auto" onClick={this.showModal} />
 
         <Modal
           show={this.state.showModal}
@@ -54,7 +68,7 @@ class EditExpenseIcon extends Component {
                 }
                 name="amount"
                 type="text"
-                defaultValue={this.state.amount}
+                defaultValue={expense.amount}
                 onChange={this.changeHandler}
               />
               <div className={classes.ErrorMessage}>
@@ -74,7 +88,7 @@ class EditExpenseIcon extends Component {
                 }
                 name="date"
                 type="date"
-                defaultValue={this.state.date}
+                defaultValue={expense.date}
                 onChange={this.changeHandler}
               />
               <div className={classes.ErrorMessage}>
@@ -94,7 +108,7 @@ class EditExpenseIcon extends Component {
                 }
                 name="item"
                 type="text"
-                defaultValue={this.state.item}
+                defaultValue={expense.item}
                 onChange={this.changeHandler}
               />
               <div className={classes.ErrorMessage}>
@@ -114,7 +128,7 @@ class EditExpenseIcon extends Component {
                 }
                 name="location"
                 type="text"
-                defaultValue={this.state.location}
+                defaultValue={expense.location}
                 onChange={this.changeHandler}
               />
               <div className={classes.ErrorMessage}>
@@ -129,7 +143,7 @@ class EditExpenseIcon extends Component {
               <select
                 className={classes.InputType}
                 name="paymentType"
-                defaultValue={this.state.paymentType}
+                defaultValue={expense.paymentType}
                 onChange={this.changeHandler}
               >
                 <option value="Cash">Cash</option>
@@ -140,10 +154,10 @@ class EditExpenseIcon extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="dark" onClick={this.props.hideModal}>
+            <Button variant="dark" onClick={this.hideModal}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.saveNewExpenseHandler}>
+            <Button variant="primary" onClick={this.saveExpense}>
               Save Changes
             </Button>
           </Modal.Footer>

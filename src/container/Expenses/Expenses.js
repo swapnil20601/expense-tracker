@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import uuid from "react-uuid";
 import ExpenseTable from "../../components/ExpenseTable/ExpenseTable";
 import FormField from "../../components/FormField/FormField";
-import EditModal from "../../components/Modal/EditModal";
 import Aux from "../../hoc/Auxiliary";
 
 //Parent Component that manages state of the application and operations performed on it
@@ -15,20 +14,16 @@ class Expenses extends Component {
     location: "",
     paymentType: "",
     expenses: [],
-    showModal: false,
-    editExpenseIndex: 0,
-    deleteExpenseIndex: 0,
-    editExpenseItem: {},
+    expenseIndex: 0,
     errorMessages: {
       itemError: "",
       amountError: "",
       locationError: "",
       paymentTypeError: "",
-      dateError: ""
-    }
+      dateError: "",
+    },
   };
 
-  //function to validate Form data before submitting the form
   validate = () => {
     let itemError = "";
     let locationError = "";
@@ -77,7 +72,7 @@ class Expenses extends Component {
         locationError,
         amountError,
         dateError,
-        paymentTypeError
+        paymentTypeError,
       };
       this.setState({ errorMessages: updatedErrorMessages });
       return false;
@@ -86,12 +81,10 @@ class Expenses extends Component {
     return true;
   };
 
-  //function to handle two-way binding when input vaue is changed
-  changeHandler = event => {
+  changeHandler = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  //function to delete specific expense from Expense table and in Local Storage
   deleteExpenseHandler = () => {
     const expenseIndex = this.state.deleteExpenseIndex;
     const updatedExpenses = [...this.state.expenses];
@@ -99,42 +92,27 @@ class Expenses extends Component {
     //deletes the expense from local storage
     localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
     this.setState({ expenses: updatedExpenses });
-    this.hideConfirmationModalHandler();
   };
 
-  //function to show modal populated with required expense data when edit button in Expense Table is clicked
-  showModalHandler = (requiredExpenseItem, requiredExpenseIndex) => {
-    this.setState({
-      showModal: true,
-      editExpenseItem: requiredExpenseItem,
-      editExpenseIndex: requiredExpenseIndex
-    });
-  };
-
-  //function to hide confirmation modal if you don't wish to Edit any expense in Expense Table
-  hideModalHandler = () => {
-    this.setState({ showModal: false });
-  };
-
-  //function to save the updated expense in Expense Table and also in Local Storage
-  saveUpdatedExpenseModal = updatedExpense => {
+  saveUpdatedExpenseModal = (updatedExpense) => {
     delete updatedExpense.errorMessages;
-    const expenseIndex = this.state.editExpenseIndex;
-    const editedExpense = [...this.state.expenses];
-    editedExpense[expenseIndex] = updatedExpense;
-    this.setState({ expenses: editedExpense });
+
+    const newExpense = [...this.state.expenses];
+    const newExpenseIndex = newExpense.findIndex(
+      (element) => element.id === updatedExpense.id
+    );
+    newExpense[newExpenseIndex] = updatedExpense;
+    this.setState({ expenses: newExpense });
+
     //updates the edited expense in local storage
-    localStorage.setItem("expenses", JSON.stringify(editedExpense));
-    this.hideModalHandler();
+    localStorage.setItem("expenses", JSON.stringify(newExpense));
   };
 
-  //function to submit form with valid expense data and also adding expense to Local Storage
-  submitFormHandler = event => {
+  submitFormHandler = (event) => {
     event.preventDefault();
 
     const isValid = this.validate();
 
-    //submits form only if all validations are passed
     if (isValid) {
       const updatedExpenses = [...this.state.expenses];
 
@@ -144,13 +122,11 @@ class Expenses extends Component {
         item: this.state.item,
         amount: this.state.amount,
         location: this.state.location,
-        paymentType: this.state.paymentType
+        paymentType: this.state.paymentType,
       });
 
-      //adds the valid expense to local storage
       localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
 
-      //clears the form
       this.setState({
         expenses: updatedExpenses,
         id: "",
@@ -164,8 +140,8 @@ class Expenses extends Component {
           amountError: "",
           locationError: "",
           dateError: "",
-          paymentTypeError: ""
-        }
+          paymentTypeError: "",
+        },
       });
     }
   };
@@ -185,13 +161,7 @@ class Expenses extends Component {
   render() {
     return (
       <Aux>
-        <EditModal
-          showModal={this.state.showModal}
-          hideModal={this.hideModalHandler}
-          saveEditedExpense={this.saveUpdatedExpenseModal}
-          populateModalData={this.state.editExpenseItem}
-        />
-         <FormField
+        <FormField
           date={this.state.date}
           item={this.state.item}
           amount={this.state.amount}
@@ -204,9 +174,8 @@ class Expenses extends Component {
         <main className="mt-5 mb-5 d-flex justify-content-center">
           <ExpenseTable
             body={this.state.expenses}
-            edit={this.showModalHandler}
-            confirmation={this.showConfirmationHandler}
             deleteExpenseHandler={this.deleteExpenseHandler}
+            saveExpenseHandler={this.saveUpdatedExpenseModal}
           />
         </main>
       </Aux>

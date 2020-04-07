@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
-import classes from "./ExpenseTable.module.css";
 import DeleteExpenseIcon from "./DeleteExpenseIcon";
 import EditExpenseIcon from "./EditExpenseIcon";
+import classes from "./ExpenseTable.module.css";
 
 //Functional Component to return dynamic Expense table
-const expenseTable = props => {
+const expenseTable = (props) => {
   //Function to convert date format from yyyy-mm-dd to mm/dd/yyyy
-  const dateConverter = date => {
+  const dateConverter = (date) => {
     const dateObj = new Date(date + "T00:00:00");
     return new Intl.DateTimeFormat("en-US").format(dateObj);
   };
@@ -47,7 +47,10 @@ const expenseTable = props => {
                 <Td>{expense.paymentType}</Td>
                 <Td>{expense.location}</Td>
                 <Td>
-                  <EditExpenseIcon expense={expense}/>
+                  <EditExpenseIcon
+                    expense={expense}
+                    saveExpenseHandler={props.saveExpenseHandler}
+                  />
                 </Td>
                 <Td>
                   <DeleteExpenseIcon
@@ -65,7 +68,7 @@ const expenseTable = props => {
 };
 
 expenseTable.propTypes = {
-  body: PropTypes.arrayOf(Object).isRequired
+  body: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default expenseTable;

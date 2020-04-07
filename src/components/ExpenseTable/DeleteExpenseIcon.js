@@ -18,6 +18,11 @@ class DeleteExpenseIcon extends Component {
     this.setState({ showModal: false });
   };
 
+  deleteExpense = () => {
+    this.props.deleteExpenseHandler();
+    this.hideModal();
+  };
+
   render() {
     return (
       <>
@@ -46,7 +51,7 @@ class DeleteExpenseIcon extends Component {
             <Button variant="secondary" onClick={this.hideModal}>
               Cancel
             </Button>
-            <Button variant="danger" onClick={this.props.deleteExpenseHandler}>
+            <Button variant="danger" onClick={this.deleteExpense}>
               Delete
             </Button>
           </Modal.Footer>
