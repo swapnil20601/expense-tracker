@@ -4,7 +4,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import classes from "./Form.module.css";
 
 //Functional Component to return form with input fields
-const FormField = props => {
+const FormField = (props) => {
   const inputRef = useRef(null);
 
   //hook to focus on Amount input field
@@ -38,7 +38,9 @@ const FormField = props => {
             onChange={props.changed}
             ref={inputRef}
           />
-          <div style={{ color: "red" }}>{props.errors.amountError}</div>
+          <div style={{ color: "#770A0A", fontWeight: "bold" }}>
+            {props.errors.amountError}
+          </div>
         </Form.Group>
 
         <Form.Group as={Col} md="3">
@@ -58,7 +60,9 @@ const FormField = props => {
             value={props.date}
             onChange={props.changed}
           />
-          <div style={{ color: "red" }}>{props.errors.dateError}</div>
+          <div style={{ color: "#770A0A", fontWeight: "bold" }}>
+            {props.errors.dateError}
+          </div>
         </Form.Group>
 
         <Form.Group as={Col} md="4">
@@ -78,7 +82,9 @@ const FormField = props => {
             onChange={props.changed}
             value={props.item}
           />
-          <div style={{ color: "red" }}>{props.errors.itemError}</div>
+          <div style={{ color: "#770A0A", fontWeight: "bold" }}>
+            {props.errors.itemError}
+          </div>
         </Form.Group>
       </Form.Row>
 
@@ -100,7 +106,9 @@ const FormField = props => {
             value={props.location}
             onChange={props.changed}
           />
-          <div style={{ color: "red" }}>{props.errors.locationError}</div>
+          <div style={{ color: "#770A0A", fontWeight: "bold" }}>
+            {props.errors.locationError}
+          </div>
         </Form.Group>
 
         <Form.Group as={Col} md="3">
@@ -127,7 +135,9 @@ const FormField = props => {
             <option value="Credit Card">Credit Card</option>
             <option value="Other">Other</option>
           </Form.Control>
-          <div style={{ color: "red" }}>{props.errors.paymentTypeError}</div>
+          <div style={{ color: "#770A0A", fontWeight: "bold" }}>
+            {props.errors.paymentTypeError}
+          </div>
         </Form.Group>
       </Form.Row>
 
@@ -152,7 +162,7 @@ FormField.propTypes = {
   item: PropTypes.string.isRequired,
   paymentType: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  errors: PropTypes.object
+  errors: PropTypes.object,
 };
 
 export default FormField;
