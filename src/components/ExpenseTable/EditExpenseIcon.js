@@ -31,8 +31,7 @@ class EditExpenseIcon extends Component {
   };
 
   changeHandler = (event) => {
-    //const newExpenseModalData = { ...this.state.expense };
-    const newExpenseModalData = Object.assign({}, this.state.expense);
+    const newExpenseModalData = { ...this.state.expense };
     newExpenseModalData[event.target.name] = event.target.value;
     this.setState({ expense: newExpenseModalData });
   };
